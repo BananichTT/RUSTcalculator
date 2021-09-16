@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="rustd">#1F1F1F</color>
+    <color name="rustbg">#2B2B2B</color>
+    <color name="rusttext">#A5A7A8</color>
 </resources>
