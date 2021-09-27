@@ -17,14 +17,14 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, NavigationActivity.class);
                 startActivity(intent);
                 finish();
             }
         },SPLASH_DISPLAY_LENGHT);
 
         // можно будет переделать на это
-        /*Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        /*Intent intent = new Intent(SplashActivity.this, NavigationActivity.class);
         startActivity(intent);
         finish();*/
 
