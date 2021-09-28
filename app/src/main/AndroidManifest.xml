@@ -12,8 +12,7 @@
         <activity
             android:name=".NavigationActivity"
             android:exported="true"
-            android:label="@string/title_activity_navigation"
-            android:theme="@style/Theme.RUSTcal.NoActionBar" />
+            android:label="@string/title_activity_navigation" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
