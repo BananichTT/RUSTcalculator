@@ -1,4 +1,4 @@
-package com.example.rustcal.ui.slideshow;
+package com.example.rustcal.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,23 +13,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.rustcal.R;
-import com.example.rustcal.databinding.FragmentSlideshowBinding;
+import com.example.rustcal.databinding.FragmentNotificationsBinding;
 
-public class SlideshowFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private NotificationsViewModel notificationsViewModel;
+    private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        notificationsViewModel =
+                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textNotifications;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
