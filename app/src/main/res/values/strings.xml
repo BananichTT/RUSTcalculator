@@ -14,4 +14,18 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string-array name="items">
+        <item>Rock</item>
+        <item>Salvaged Hammer</item>
+        <item>Mace</item>
+        <item>Paddle</item>
+        <item>Bone Club</item>
+        <item>Flashlight</item>
+    </string-array>
+
+    <string-array name="objects">
+        <item>Wooden Door</item>
+        <item>Armored Door</item>
+    </string-array>
 </resources>
