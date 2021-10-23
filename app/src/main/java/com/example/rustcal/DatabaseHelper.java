@@ -1,4 +1,4 @@
-package com.example.rustcal.ui;
+package com.example.rustcal;
 
 import android.content.Context;
 import android.database.SQLException;
