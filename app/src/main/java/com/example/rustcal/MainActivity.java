@@ -47,20 +47,20 @@ public class MainActivity extends AppCompatActivity {
                 String[] selectionArgs = new String[]{"Rock"}; // Значение для параметра
 
                 Cursor cursor = Db.query("items", null, selection, selectionArgs, null, null, null); // Формировщик запроса
-
+                String items = "";
                 // Поиск в БД
                 if(cursor != null){
                     if(cursor.moveToFirst()){
-                        String items = "";
                         do{
                                 items = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
                             Log.d("mLog", items);
                         }while (cursor.moveToNext());
                     }
                     cursor.close();
-                }else
+                }else {
                     Log.d("mLog", "Cursor is null");
-
+                }
+                Integer a = Integer.parseInt(items);
                 /*Cursor cursor = Db.rawQuery("SELECT * FROM items", null);
                 cursor.moveToFirst();
 
