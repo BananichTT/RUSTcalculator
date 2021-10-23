@@ -37,21 +37,38 @@ public class MainActivity extends AppCompatActivity {
             throw mSQLException;
         }
 
+
+        // Тут по нажатию кнопки происходит выборка из бд
+
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String items = "";
+                String selection = "name = ?"; // Параметр по которому производим поиск
+                String[] selectionArgs = new String[]{"Rock"}; // Значение для параметра
 
-                Cursor cursor = Db.rawQuery("SELECT * FROM items", null);
+                Cursor cursor = Db.query("items", null, selection, selectionArgs, null, null, null); // Формировщик запроса
+
+                // Поиск в БД
+                if(cursor != null){
+                    if(cursor.moveToFirst()){
+                        String items = "";
+                        do{
+                                items = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
+                            Log.d("mLog", items);
+                        }while (cursor.moveToNext());
+                    }
+                    cursor.close();
+                }else
+                    Log.d("mLog", "Cursor is null");
+
+                /*Cursor cursor = Db.rawQuery("SELECT * FROM items", null);
                 cursor.moveToFirst();
 
                 while (!cursor.isAfterLast()){
                     items += cursor.getString(0) + " | ";
                     cursor.moveToNext();
                 }
-                cursor.close();
-
-                Log.d("mLog", items);
+                cursor.close();*/
             }
         });
     }
