@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+                            /*ТЕСТЫ С БД*/
 
 public class MainActivity extends AppCompatActivity {
 

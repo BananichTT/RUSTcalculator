@@ -32,7 +32,7 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase Db;
-    public String damage;
+    public String damage; // Урон и одновремено урон который получает инструмент за 1 удар
     public String pri; // Прочность инструмента
     public String pro; // Прочность объекта
 
@@ -70,16 +70,18 @@ public class DashboardFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = "name = ?";
-                String[] selectionArgs = new String[]{(String)parent.getItemAtPosition(position)};
-                Cursor cursor = Db.query("items", null, selection, selectionArgs, null, null, null);
+                String selection = "name = ?"; // Параметр по которому ведется поиск
+                String[] selectionArgs = new String[]{(String)parent.getItemAtPosition(position)}; // Значение для параметра
 
+                Cursor cursor = Db.query("items", null, selection, selectionArgs, null, null, null); // Запрос
+
+                // Поиск значения вроде как
                 if(cursor != null){
                     if(cursor.moveToFirst()){
                         do{
                             damage = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
-                            pri = cursor.getString(2);
-                            Log.d("mLog", "damage: " + damage + "; " + "prochnost: " + pri);
+                            pri = cursor.getString(2); // Тут прочность инструмента
+                            Log.d("mLog", "damage: " + damage + "; " + "prochnost: " + pri); // На всякий случай вывожу информацию в логи
                         }while (cursor.moveToNext());
                     }
                     cursor.close();
@@ -93,6 +95,8 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
+        // Тоже самое только для второго спиннера
 
         ArrayAdapter<?> adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.objects, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -124,13 +128,16 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        // Вычисления происходят по нажатию кнопки
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double a = Integer.parseInt(damage);
-                double pi = Integer.parseInt(pri);
-                double po = Integer.parseInt(pro);
-                double n = (a / pi) * (po / a);
+                double a = Integer.parseInt(damage); // урон инструмента и тот урон который получает он за 1 удар
+                                                        // (если эти значения должны быть разные то можно разбить на 2 переменные)
+                double pi = Integer.parseInt(pri);// прочность инструмента
+                double po = Integer.parseInt(pro);// прочность объекта
+                double n = (a / pi) * (po / a); // формула по которой происходит расчет
 
                 text.setText(String.valueOf(n));
                 Log.d("calculateing", String.valueOf(n));
