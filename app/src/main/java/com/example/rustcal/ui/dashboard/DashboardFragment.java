@@ -1,6 +1,5 @@
 package com.example.rustcal.ui.dashboard;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,13 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.rustcal.DatabaseHelper;
@@ -28,13 +26,15 @@ import java.io.IOException;
 
 public class DashboardFragment extends Fragment {
 
+
+
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase Db;
     public String damage;
-    public String pi;
-    public String po;
+    public String pri; // Прочность инструмента
+    public String pro; // Прочность объекта
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +58,8 @@ public class DashboardFragment extends Fragment {
             throw mSQLException;
         }
 
-
+        final Button calculate = binding.button4;
+        final TextView text = binding.textView3;
         final Spinner spinner =binding.spinner;
         final Spinner spinner2 =binding.spinner2;
 
@@ -77,8 +78,8 @@ public class DashboardFragment extends Fragment {
                     if(cursor.moveToFirst()){
                         do{
                             damage = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
-                            pi = cursor.getString(2);
-                            Log.d("mLog", "damage: " + damage + "; " + "prochnost: " + pi);
+                            pri = cursor.getString(2);
+                            Log.d("mLog", "damage: " + damage + "; " + "prochnost: " + pri);
                         }while (cursor.moveToNext());
                     }
                     cursor.close();
@@ -107,8 +108,8 @@ public class DashboardFragment extends Fragment {
                 if(cursor != null){
                     if(cursor.moveToFirst()){
                         do{
-                            po = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
-                            Log.d("mLog", "prochnost object: " + po);
+                            pro = cursor.getString(1); // Получаем тот столбец который нужен, в нашем случае урон инструмента
+                            Log.d("mLog", "prochnost object: " + pro);
                         }while (cursor.moveToNext());
                     }
                     cursor.close();
@@ -122,6 +123,21 @@ public class DashboardFragment extends Fragment {
 
             }
         });
+
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double a = Integer.parseInt(damage);
+                double pi = Integer.parseInt(pri);
+                double po = Integer.parseInt(pro);
+                double n = (a / pi) * (po / a);
+
+                text.setText(String.valueOf(n));
+                Log.d("calculateing", String.valueOf(n));
+
+            }
+        });
+
 
         return root;
     }
