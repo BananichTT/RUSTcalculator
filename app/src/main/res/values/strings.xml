@@ -18,7 +18,7 @@
     <string-array name="items">
         <item>Rock</item>
         <item>Salvaged Hammer</item>
-        <item>Mace</item>
+        <item>Pickaxe</item>
         <item>Paddle</item>
         <item>Bone Club</item>
         <item>Flashlight</item>
@@ -27,5 +27,6 @@
     <string-array name="objects">
         <item>Wooden Door</item>
         <item>Armored Door</item>
+        <item>Wooden wall</item>
     </string-array>
 </resources>

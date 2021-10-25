@@ -4,11 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".ui.home.HomeFragment">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="10dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:src="@drawable/rust1" />
 
-
-
-
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="220dp"
+        android:layout_height="25dp"
+        android:layout_weight="1"
+        android:text="Preparing for future changes"
+        android:textAlignment="center" />
 </LinearLayout>

@@ -139,9 +139,8 @@ public class DashboardFragment extends Fragment {
                 double po = Integer.parseInt(pro);// прочность объекта
                 double n = (a / pi) * (po / a); // формула по которой происходит расчет
 
-                text.setText(String.valueOf(n));
+                text.setText(String.format("%.0f", n));
                 Log.d("calculateing", String.valueOf(n));
-
             }
         });
 
