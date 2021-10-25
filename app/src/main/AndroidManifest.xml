@@ -13,7 +13,6 @@
             android:name=".NavigationActivity"
             android:exported="true"
             android:label="@string/title_activity_navigation" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
